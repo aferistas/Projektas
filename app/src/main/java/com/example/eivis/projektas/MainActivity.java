@@ -2,6 +2,7 @@ package com.example.eivis.projektas;
 
 import android.Manifest;
 import android.animation.TypeConverter;
+import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothGatt;
@@ -20,6 +21,7 @@ import android.os.AsyncTask;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -64,7 +66,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     String subjectT;
     String WriteFolder;
     Button createFolder;
-    File folder = new File(Environment.getExternalStorageDirectory() + "/Duomenys/");
     File fileName = null;
     float dataAdd1 = 0;
     float dataAdd2 = 0;
@@ -98,6 +99,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     ArrayAdapter<String> foldersAvailibleAdapter;
     File selectedFolder;
     int calledFromSS;
+    private static String[] PERMISSIONS_STORAGE = {
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -117,6 +123,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         textState = (TextView) findViewById(R.id.textState);
         connectDevice.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                folderDuom();
                 startScanning();
                 textState.setText("Ieškoma jutiklio...");
             }
@@ -174,7 +181,45 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
             }
         }
+        verifyStoragePermissions(MainActivity.this);
+
     }
+    public static void verifyStoragePermissions(Activity activity) {
+        Log.e(TAG,"Entered folderDuom");
+        // Check if we have write permission
+        int permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+            // We don't have permission so prompt the user
+            ActivityCompat.requestPermissions(
+                    activity,
+                    PERMISSIONS_STORAGE,1
+
+            );
+        }
+    }
+    private void folderDuom() {
+        File folderDuomenys = new File(Environment.getExternalStorageDirectory() +
+                File.separator + "/Duomenys2/");
+        Log.e(TAG,"Entered folderDuom");
+        boolean success = true;
+        if (!folderDuomenys.exists()) {
+            Log.e(TAG,"Entered 1");
+            Toast.makeText(this,"Aplanko nera",Toast.LENGTH_SHORT);
+            success = folderDuomenys.mkdir();
+        } else
+        {Log.e(TAG,"Entered 2");
+            Toast.makeText(this,"Aplankas yra",Toast.LENGTH_SHORT);
+        }
+        if (success) {
+            Log.e(TAG,"Entered 3");
+            Toast.makeText(this,"Sukurtas aplankas",Toast.LENGTH_SHORT);
+        } else {
+            Log.e(TAG,"Entered 4");
+            Toast.makeText(this,"Aplankas nesukurtas",Toast.LENGTH_SHORT);
+        }
+    }
+
     /*
     * Naujo aplanko "input+MM-dd" kurimo pop up
     * */
