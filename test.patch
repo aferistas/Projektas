@@ -1,0 +1,66 @@
+Index: app/src/main/java/com/example/eivis/projektas/matavimaiActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/eivis/projektas/matavimaiActivity.java	(date 1493804019000)
++++ app/src/main/java/com/example/eivis/projektas/matavimaiActivity.java	(revision )
+@@ -3,12 +3,16 @@
+ import android.app.Dialog;
+ import android.content.DialogInterface;
+ import android.graphics.Color;
++import android.graphics.Typeface;
+ import android.os.Environment;
+ import android.support.v7.app.AlertDialog;
+ import android.support.v7.app.AppCompatActivity;
+ import android.os.Bundle;
+ import android.support.v7.widget.RecyclerView;
++import android.text.Spannable;
++import android.text.SpannableString;
+ import android.text.method.ScrollingMovementMethod;
++import android.text.style.StyleSpan;
+ import android.util.Log;
+ import android.view.View;
+ import android.widget.Adapter;
+@@ -257,12 +261,23 @@
+             s.close();
+             rez =calculate(MLX_data,DS_data);
+             if (calcMLX==1) {
+-                SpindTV.append("\n " + file.getName() + " " + rez[1]);
++                String failas = file.getName().toString();
++                String verte = String.valueOf(rez[1]);
++                SpannableString str = new SpannableString(failas +" - "+ verte+"\n\n");
++                str.setSpan(new StyleSpan(Typeface.BOLD), failas.length()+1,failas.length()+3+verte.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
++               // SpindTV.append("\n " + file.getName() + " " +" <b>"+rez[1]+"</b>");
++                SpindTV.append(str);
+                 SpindNameTV.setVisibility(View.VISIBLE);
+ 
+             }
+             if (calcDS==1) {
+-                PlotuTV.append("\n "+file.getName()+" "+rez[0]);
++                String failas = file.getName().toString();
++                String verte = String.valueOf(rez[0]);
++                SpannableString str = new SpannableString(failas +" - "+ verte+"\n\n");
++                str.setSpan(new StyleSpan(Typeface.BOLD), failas.length()+1,failas.length()+3+verte.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
++                // SpindTV.append("\n " + file.getName() + " " +" <b>"+rez[1]+"</b>");
++                PlotuTV.append(str);
++               // PlotuTV.append("\n "+file.getName()+" "+rez[0]);
+                 PltuPavTV.setVisibility(View.VISIBLE);
+ 
+             }
+@@ -271,6 +286,7 @@
+ 
+                 makeGraph(Norm_MLX);
+                 series.setTitle(file.getName() + " MLX");
++                matavimaiGraph.getLegendRenderer().setTextSize(14f);
+                 matavimaiGraph.getLegendRenderer().setVisible(true);
+                 matavimaiGraph.getLegendRenderer().setAlign(LegendRenderer.LegendAlign.TOP);
+             }
+@@ -279,6 +295,7 @@
+ 
+                 makeGraph(Norm_DS);
+                 series.setTitle(file.getName() + " DS");
++                matavimaiGraph.getLegendRenderer().setTextSize(14f);
+                 matavimaiGraph.getLegendRenderer().setVisible(true);
+                 matavimaiGraph.getLegendRenderer().setAlign(LegendRenderer.LegendAlign.TOP);
+             }
