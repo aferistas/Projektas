@@ -417,6 +417,21 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                    // final byte[] dataInput = characteristic.getValue();
                     Log.e(TAG,"  "+updateCount);
                     if (inputStreamCount==6){
+                       if (arrayNR==3){
+                           textState.setText("Pasiruoškite uždėti pirštą po 4 sekundžių");
+                       }
+                        if (arrayNR==7){
+                            textState.setText("Pasiruoškite uždėti pirštą po 3 sekundžių");
+                        }
+                        if (arrayNR==11){
+                            textState.setText("Pasiruoškite uždėti pirštą po 2 sekundžių");
+                        }
+                        if (arrayNR==15){
+                            textState.setText("Pasiruoškite uždėti pirštą po 1 sekundės");
+                        }
+                        if (arrayNR==19){
+                            textState.setText("Laikykite uždėję pirštą");
+                        }
                         Log.e(TAG,"Chara 5");
                         inputStreamCount=0;
                     byte[] lol=characteristic.getValue();
@@ -427,6 +442,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                         Log.e(TAG,"lol "+lol);
                     if (updateCount==270)
                     {stopNotifications();
+                        textState.setText("Matavimas baigtas");
                         addToTXT(testArray);}}
                     else {inputStreamCount++;}
                     // for (int j = 0; j < dataInput.length; j++) {
@@ -458,6 +474,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         inputStreamCount=0;
         //startRepeatingTask();
         startNotifications();
+        if (arrayNR==0){
+            textState.setText("Pasiruoškite uždėti pirštą po 5 sekundžių");
+        }
     }
 
 /*
