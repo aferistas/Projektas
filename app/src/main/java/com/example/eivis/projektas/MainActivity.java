@@ -200,23 +200,22 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
     private void folderDuom() {
         File folderDuomenys = new File(Environment.getExternalStorageDirectory() +
-                File.separator + "/Duomenys2/");
+                File.separator + "/Duomenys/");
         Log.e(TAG,"Entered folderDuom");
         boolean success = true;
         if (!folderDuomenys.exists()) {
             Log.e(TAG,"Entered 1");
-            Toast.makeText(this,"Aplanko nera",Toast.LENGTH_SHORT);
             success = folderDuomenys.mkdir();
         } else
         {Log.e(TAG,"Entered 2");
-            Toast.makeText(this,"Aplankas yra",Toast.LENGTH_SHORT);
+
         }
         if (success) {
             Log.e(TAG,"Entered 3");
-            Toast.makeText(this,"Sukurtas aplankas",Toast.LENGTH_SHORT);
+
         } else {
             Log.e(TAG,"Entered 4");
-            Toast.makeText(this,"Aplankas nesukurtas",Toast.LENGTH_SHORT);
+
         }
     }
 
@@ -463,19 +462,49 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                     Log.e(TAG,"  "+updateCount);
                     if (inputStreamCount==6){
                        if (arrayNR==3){
-                           textState.setText("Pasiruoškite uždėti pirštą po 4 sekundžių");
+                           runOnUiThread(new Runnable() {
+                               @Override
+                               public void run() {
+                                   textState.setText("Pasiruoškite uždėti pirštą po 4 sekundžių");
+
+                               }
+                           });
                        }
                         if (arrayNR==7){
-                            textState.setText("Pasiruoškite uždėti pirštą po 3 sekundžių");
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    textState.setText("Pasiruoškite uždėti pirštą po 3 sekundžių");
+
+                                }
+                            });
                         }
                         if (arrayNR==11){
-                            textState.setText("Pasiruoškite uždėti pirštą po 2 sekundžių");
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    textState.setText("Pasiruoškite uždėti pirštą po 2 sekundžių");
+
+                                }
+                            });
                         }
                         if (arrayNR==15){
-                            textState.setText("Pasiruoškite uždėti pirštą po 1 sekundės");
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    textState.setText("Pasiruoškite uždėti pirštą po 1 sekundės");;
+
+                                }
+                            });
                         }
                         if (arrayNR==19){
-                            textState.setText("Laikykite uždėję pirštą");
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    textState.setText("Laikykite uždėję pirštą");
+
+                                }
+                            });
                         }
                         Log.e(TAG,"Chara 5");
                         inputStreamCount=0;
@@ -487,7 +516,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                         Log.e(TAG,"lol "+lol);
                     if (updateCount==270)
                     {stopNotifications();
-                        textState.setText("Matavimas baigtas");
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                textState.setText("Matavimas baigtas");
+
+                            }
+                        });
                         addToTXT(testArray);}}
                     else {inputStreamCount++;}
                     // for (int j = 0; j < dataInput.length; j++) {

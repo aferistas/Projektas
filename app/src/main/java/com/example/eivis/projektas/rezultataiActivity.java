@@ -341,8 +341,8 @@ public class rezultataiActivity extends AppCompatActivity implements AdapterView
       // Date date = new Date(97, 1, 23);
        // Time timeMIN = new Time(minmax[1],+minmax[3],0);
         //  Time timeMAX = new Time(minmax[0],+minmax[2],0);
-        Time timeMIN = new Time(0,0,0);
-        Time timeMAX = new Time(23,59,59);
+        Time timeMIN = new Time(7,0,0);
+        Time timeMAX = new Time(24,0,0);
         Calendar calendar = Calendar.getInstance();
         Calendar calendar2 = Calendar.getInstance();
       //  calendar.add(Calendar.HOUR,minmax[1]);
