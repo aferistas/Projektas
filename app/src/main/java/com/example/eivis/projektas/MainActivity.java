@@ -665,12 +665,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 else if (ii == 3){
                     try {
                         inputStream4 = inData[i][ii];
-                        int in5 = (((inputStream3&0x7F)<<8)|(inputStream4&0xFF))>>5;
+                        int in5 = (((inputStream3&0x7F)<<8)|(inputStream4&0xFF))>>4;
                       //  dataAdd2 = ((dataAdd2  + (inputStream4&0xFF))>>5);
                         dataAdd2 = in5;
                         value1 = ((dataAdd1 * 0.02) - 275.15);
-                        value2 = dataAdd2 *0.125;
-                        DecimalFormat df = new DecimalFormat("#.##");
+                        value2 = dataAdd2 *0.0625;
+                        DecimalFormat df = new DecimalFormat("#.###");
                         value1 = Double.valueOf(df.format(value1));
                         value2 = Double.valueOf(df.format(value2));
                     //    if (value1!=-275.15){
