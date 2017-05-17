@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         setContentView(R.layout.activity_main);
         selectedFolder = null;
         dataCollected = new byte[41];
-        testArray = new byte[270][4];
+        testArray = new byte[270][4]; //270
         sdf = new String[270];
         folderListView = (ListView) findViewById(R.id.folderListView);
         folderListView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
@@ -459,9 +459,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 public void onCharacteristicChanged(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic) {
                     super.onCharacteristicChanged(gatt, characteristic);
                    // final byte[] dataInput = characteristic.getValue();
-                    Log.e(TAG,"  "+updateCount);
+                 //   Log.e(TAG,"  "+updateCount);
                     if (inputStreamCount==6){
-                       if (arrayNR==3){
+                       if (arrayNR>3 & arrayNR<7){
                            runOnUiThread(new Runnable() {
                                @Override
                                public void run() {
@@ -470,7 +470,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                                }
                            });
                        }
-                        if (arrayNR==7){
+                        if (arrayNR>=7&arrayNR<11){
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
@@ -479,7 +479,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                                 }
                             });
                         }
-                        if (arrayNR==11){
+                        if (arrayNR>=11& arrayNR <15){
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
@@ -488,7 +488,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                                 }
                             });
                         }
-                        if (arrayNR==15){
+                        if (arrayNR>=15&arrayNR<19){
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
@@ -497,7 +497,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                                 }
                             });
                         }
-                        if (arrayNR==19){
+                        if (arrayNR>=19){
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
@@ -506,15 +506,18 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                                 }
                             });
                         }
-                        Log.e(TAG,"Chara 5");
+                        Log.e(TAG,""+arrayNR);
                         inputStreamCount=0;
                     byte[] lol=characteristic.getValue();
                     testArray[arrayNR]=characteristic.getValue();
                     arrayNR++;
                     sdf[updateCount]= new SimpleDateFormat("mm:ss.SSS").format(new Date());
                     updateCount++;
-                        Log.e(TAG,"lol "+lol);
-                    if (updateCount==270)
+                        Log.d(TAG,"lol "+lol[0]);
+                        Log.d(TAG,"lol "+lol[1]);
+                        Log.d(TAG,"lol "+lol[2]);
+                        Log.d(TAG,"lol "+lol[3]);
+                    if (updateCount==270) //270
                     {stopNotifications();
                         runOnUiThread(new Runnable() {
                             @Override
