@@ -135,9 +135,9 @@ public class matavimaiActivity extends AppCompatActivity implements AdapterView.
     void alertPrompt(){
         List<CharSequence> mHelperNames = new ArrayList<CharSequence>();
         mHelperNames.add("Atlikti MLX skaičiavimus");
-        mHelperNames.add("Atlikti DS skaičiavimus");
+        mHelperNames.add("Atlikti TMP skaičiavimus");
         mHelperNames.add("Brėžti MLX grafikus");
-        mHelperNames.add("Brėžti DS grafikus");
+        mHelperNames.add("Brėžti TMP grafikus");
 
         final List<Integer> mSelectedItems = new ArrayList<Integer>();
 
@@ -294,7 +294,7 @@ public class matavimaiActivity extends AppCompatActivity implements AdapterView.
             if (plotDS==1) {
 
                 makeGraph(Norm_DS);
-                series.setTitle(file.getName() + " DS");
+                series.setTitle(file.getName() + " TMP");
                 matavimaiGraph.getLegendRenderer().setTextSize(14f);
                 matavimaiGraph.getLegendRenderer().setVisible(true);
                 matavimaiGraph.getLegendRenderer().setAlign(LegendRenderer.LegendAlign.TOP);

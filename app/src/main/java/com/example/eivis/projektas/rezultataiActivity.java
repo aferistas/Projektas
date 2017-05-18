@@ -373,7 +373,7 @@ public class rezultataiActivity extends AppCompatActivity implements AdapterView
         rezultataiGraph.getLegendRenderer().setVisible(true);
         rezultataiGraph.getLegendRenderer().setAlign(LegendRenderer.LegendAlign.TOP);
         PointsGraphSeries<DataPoint>series2 = new PointsGraphSeries<>(points2);
-        series2.setTitle("DS");
+        series2.setTitle("TMP");
         rezultataiGraph.getLegendRenderer().setVisible(true);
         rezultataiGraph.getLegendRenderer().setAlign(LegendRenderer.LegendAlign.TOP);
         Log.d(TAG,"        "+timeMIN.getTime()+"        "+timeMAX.getTime());
